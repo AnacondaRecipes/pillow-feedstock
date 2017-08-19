@@ -23,7 +23,7 @@ requirements:
     - libtiff >=4.0.3,<4.0.8
     - jpeg 9*
     - freetype 2.7
-    - tk 8.5.*
+    - tk 8.6.*
   run:
     - python
     - jpeg 9*
