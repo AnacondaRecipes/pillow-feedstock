@@ -15,19 +15,15 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
+    - freetype
+    - jpeg
+    - libtiff
+    - zlib
     - python
     - setuptools
-    - zlib 1.2.11
-    - libtiff >=4.0.8,<4.0.10
-    - jpeg 9*
-    - freetype 2.8.1
     - tk 8.6.*
   run:
     - python
-    - jpeg 9*
-    - zlib 1.2.11
-    - freetype 2.8.1
-    - libtiff >=4.0.8,<4.0.10
     - olefile
     - tk 8.6.*
 
