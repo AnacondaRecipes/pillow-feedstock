@@ -21,11 +21,10 @@ requirements:
     - zlib
     - python
     - setuptools
-    - tk 8.6.*
+    - tk
   run:
     - python
     - olefile
-    - tk 8.6.*
 
 test:
   imports:
