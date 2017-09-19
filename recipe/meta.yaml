@@ -23,7 +23,7 @@ requirements:
     - zlib
     - python
     - setuptools
-    - tk 8.6.*
+    - tk
   run:
     - python
     - olefile
