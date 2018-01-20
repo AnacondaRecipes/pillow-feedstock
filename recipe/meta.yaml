@@ -7,6 +7,9 @@ package:
 source:
   url: https://pypi.io/packages/source/P/Pillow/Pillow-{{ version }}.tar.gz
   sha256: 12f29d6c23424f704c66b5b68c02fe0b571504459605cfe36ab8158359b0e1bb
+  patches:
+    # https://github.com/python-pillow/Pillow/pull/2951/
+    - 0001-Fix-TypeError-object-is-not-iterable-for-PP.patch
 
 build:
   number: 0

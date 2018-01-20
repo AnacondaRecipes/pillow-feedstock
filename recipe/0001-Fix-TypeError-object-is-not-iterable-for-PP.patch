@@ -1,0 +1,26 @@
+From d4560a9facd8a0ddee09b084423e913821339ba9 Mon Sep 17 00:00:00 2001
+From: Hugo <hugovk@users.noreply.github.com>
+Date: Thu, 11 Jan 2018 12:45:52 +0200
+Subject: [PATCH] Fix "TypeError: 'NoneType' object is not iterable" for PPC
+ and CRUX
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 98d4827..4a5a3db 100755
+--- a/setup.py
++++ b/setup.py
+@@ -368,7 +368,7 @@ class pil_build_ext(build_ext):
+ 
+                 for platform_ in arch_tp:
+                     dirs = libdirs.get(platform_, None)
+-                    if not platform_:
++                    if not dirs:
+                         continue
+                     for path in dirs:
+                         _add_directory(library_dirs, path)
+-- 
+1.8.3.1
+
