@@ -36,10 +36,6 @@ test:
     - PIL._imagingmorph
     - PIL._imagingtk  # [linux and not (arm or ppc64le)]
 
-  commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-
 about:
   home: https://pillow.readthedocs.io
   license: PIL
