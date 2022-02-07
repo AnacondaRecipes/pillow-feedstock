@@ -47,6 +47,7 @@ requirements:
     - zlib
     - freetype
     - libtiff
+    - olefile
     - tk
     - libwebp >=0.3.0
 
