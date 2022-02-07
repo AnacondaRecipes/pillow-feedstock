@@ -1,11 +1,12 @@
+{% set name = "pillow" %}
 {% set version = "9.0.1" %}
 
 package:
-  name: pillow
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/P/Pillow/Pillow-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Pillow-{{ version }}.tar.gz
   sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
   patches:                  # [unix]
     - disable_detect.patch  # [unix]
@@ -46,7 +47,6 @@ requirements:
     - zlib
     - freetype
     - libtiff
-    - olefile
     - tk
     - libwebp >=0.3.0
 
