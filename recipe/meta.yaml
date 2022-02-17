@@ -40,7 +40,8 @@ requirements:
     - libtiff
     - freetype
     - tk
-    - libweb
+    - libwebp
+    - libwebp-base
   run:
     - python
     - jpeg
