@@ -40,16 +40,15 @@ requirements:
     - libtiff
     - freetype
     - tk
-    - libwebp >=0.3.0
+    - libwebp-base
   run:
     - python
     - jpeg
     - zlib
     - freetype
     - libtiff
-    - olefile
     - tk
-    - libwebp >=0.3.0
+    - libwebp-base >=0.3.0
 
 test:
   imports:
