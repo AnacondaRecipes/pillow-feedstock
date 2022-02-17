@@ -41,7 +41,6 @@ requirements:
     - freetype
     - tk
     - libwebp
-    - libwebp-base
   run:
     - python
     - jpeg
@@ -49,7 +48,6 @@ requirements:
     - freetype
     - libtiff
     - tk
-    - libwebp-base >=0.3.0
     - libwebp >=0.3.0
 
 test:
