@@ -40,7 +40,8 @@ requirements:
     - libtiff
     - freetype
     - tk
-    - libwebp-base
+    - libwebp-base  # [non s390x]
+    - libwebp  # [s390x]
   run:
     - python
     - jpeg
@@ -48,7 +49,8 @@ requirements:
     - freetype
     - libtiff
     - tk
-    - libwebp-base >=0.3.0
+    - libwebp-base >=0.3.0  # [non s390x]
+    - libwebp >=0.3.0  # [s390x]
 
 test:
   imports:
