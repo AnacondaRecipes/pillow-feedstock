@@ -47,6 +47,7 @@ requirements:
     - jpeg
     - libtiff
     - libwebp >=0.3.0
+    - libwebp-base  # [osx and arm64]
     - tk
     - zlib
 
@@ -57,7 +58,6 @@ test:
     - PIL.ImageCms  # [not win]
   requires:
     - pip
-    - libwebp-base  # [osx and arm64]
   commands:
     - pip check
 
