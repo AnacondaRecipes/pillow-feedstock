@@ -55,11 +55,6 @@ test:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
-    - PIL._imaging
-    - PIL._imagingft
-    - PIL._imagingmath
-    - PIL._imagingmorph
-    - PIL._imagingtk  # [linux and not (arm or ppc64le or aarch64)]
   requires:
     - pip
     - requests
