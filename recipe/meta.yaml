@@ -57,9 +57,6 @@ test:
     - PIL.ImageCms  # [not win]
   requires:
     - pip
-    - requests
-    - aiohttp
-    - fsspec
   commands:
     - pip check
 
