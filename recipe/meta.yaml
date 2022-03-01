@@ -30,25 +30,25 @@ requirements:
     - setuptools
     - wheel
     # Required by default
-    - zlib
     - jpeg
+    - zlib
     # Optional dependencies
     # (also can be incuded libwebp, libimagequant, libraqm, 
     # libxcb, openjpeg (it causes build errors on win32),
     # see https://pillow.readthedocs.io/en/latest/installation.html#external-libraries)
+    - freetype
     - lcms2  # [not win]
     - libtiff
-    - freetype
-    - tk
     - libwebp
+    - tk
   run:
     - python
-    - jpeg
-    - zlib
     - freetype
+    - jpeg
     - libtiff
-    - tk
     - libwebp >=0.3.0
+    - tk
+    - zlib
 
 test:
   imports:
