@@ -1,18 +1,19 @@
-{% set version = "8.4.0" %}
+{% set name = "pillow" %}
+{% set version = "9.0.1" %}
 
 package:
-  name: pillow
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/P/Pillow/Pillow-{{ version }}.tar.gz
-  sha256: b8e2f83c56e141920c39464b852de3719dfbfb6e3c99a2d8da0edf4fb33176ed
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Pillow-{{ version }}.tar.gz
+  sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
   patches:                  # [unix]
     - disable_detect.patch  # [unix]
 
 build:
   number: 0
-  skip: true  # [py<36]
+  skip: true  # [py<37]
   ignore_run_exports:
     - tk
     - jpeg
@@ -29,42 +30,34 @@ requirements:
     - setuptools
     - wheel
     # Required by default
-    - zlib
     - jpeg
-    # Optional dependencies 
+    - zlib
+    # Optional dependencies
     # (also can be incuded libwebp, libimagequant, libraqm, 
     # libxcb, openjpeg (it causes build errors on win32),
     # see https://pillow.readthedocs.io/en/latest/installation.html#external-libraries)
+    - freetype
     - lcms2  # [not win]
     - libtiff
-    - freetype
+    - libwebp
     - tk
-    - libwebp >=0.3.0
   run:
     - python
-    - jpeg
-    - zlib
     - freetype
+    - jpeg
     - libtiff
-    - olefile
-    - tk
     - libwebp >=0.3.0
+    - libwebp-base  # [osx and arm64]
+    - tk
+    - zlib
 
 test:
   imports:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
-    - PIL._imaging
-    - PIL._imagingft
-    - PIL._imagingmath
-    - PIL._imagingmorph
-    - PIL._imagingtk  # [linux and not (arm or ppc64le or aarch64)]
   requires:
     - pip
-    - requests
-    - aiohttp
-    - fsspec
   commands:
     - pip check
 
@@ -77,7 +70,7 @@ about:
   description: |
     Pillow is the friendly PIL fork. PIL is the Python Imaging Library,
     adds image processing capabilities to your Python interpreter.
-  doc_url: http://pillow.readthedocs.io/en/4.2.x/
+  doc_url: https://pillow.readthedocs.io/en/4.2.x/
   doc_source_url: https://github.com/python-pillow/Pillow/blob/4.2.x/docs/index.rst
   dev_url: https://github.com/python-pillow/Pillow
 
