@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "9.0.1" %}
+{% set version = "9.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Pillow-{{ version }}.tar.gz
-  sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
+  sha256: 75e636fd3e0fb872693f23ccb8a5ff2cd578801251f3a4f6854c6a5d437d3c04
   patches:                  # [unix]
     - disable_detect.patch  # [unix]
 
