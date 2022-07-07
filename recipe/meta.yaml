@@ -18,6 +18,9 @@ build:
     - tk
     - jpeg
     - libwebp  # [win]
+    - zlip  # [win and (py==37 or py==38)]
+    - freetype  # [win and (py==37 or py==38)]
+    - libtiff  # [win and (py==37 or py==38)]
 
 requirements:
   build:
