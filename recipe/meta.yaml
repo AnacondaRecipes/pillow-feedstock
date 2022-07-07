@@ -20,7 +20,7 @@ build:
     - freetype  # [win]
     - libtiff   # [win]
     - libwebp   # [win]
-    - zlip      # [win]
+    - zlib      # [win]
 
 requirements:
   build:
