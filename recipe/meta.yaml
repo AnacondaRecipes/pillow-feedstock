@@ -17,10 +17,10 @@ build:
   ignore_run_exports:
     - tk
     - jpeg
-    - libwebp  # [win]
-    - zlip  # [win and (py==37 or py==38)]
-    - freetype  # [win and (py==37 or py==38)]
-    - libtiff  # [win and (py==37 or py==38)]
+    - freetype  # [win]
+    - libtiff   # [win]
+    - libwebp   # [win]
+    - zlip      # [win]
 
 requirements:
   build:
