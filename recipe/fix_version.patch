@@ -1,0 +1,25 @@
+From e2764a81ce15a9973ab9936c4a221e73569ad401 Mon Sep 17 00:00:00 2001
+From: Serhii Kupriienko
+Date: Thu, 14 Jul 2022 09:00:21 +0000
+Subject: [PATCH] Fix version for python 3.7 and 3.8
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 2701aa1c..bbce2cd6 100755
+--- a/setup.py
++++ b/setup.py
+@@ -851,7 +851,7 @@ class pil_build_ext(build_ext):
+             and sys.version_info < (3, 9)
+             and not (PLATFORM_PYPY or PLATFORM_MINGW)
+         ):
+-            defs.append(("PILLOW_VERSION", f'"\\"{PILLOW_VERSION}\\""'))
++            defs.append(("PILLOW_VERSION", f'"{PILLOW_VERSION}"'))
+         else:
+             defs.append(("PILLOW_VERSION", f'"{PILLOW_VERSION}"'))
+ 
+-- 
+2.34.1
+
