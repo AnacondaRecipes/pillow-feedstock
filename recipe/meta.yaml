@@ -10,7 +10,10 @@ source:
   sha256: 75e636fd3e0fb872693f23ccb8a5ff2cd578801251f3a4f6854c6a5d437d3c04
   patches:
     - disable_detect.patch  # [unix]
-    - fix_version.patch  # [win]
+    # 2022/7/14: The issue was observed with 'import PIL.Image' in v9.2.0:
+    # double quotes for Core version: "9.2.0" on win-64 for python 3.7 and python 3.8.
+    # To fix it we used fix_version.patch. Check if the issue persists in the next releases 
+    - fix_version.patch  # [win and (py==37 or py==38)]
 
 build:
   number: 1
