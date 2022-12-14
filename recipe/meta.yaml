@@ -18,7 +18,7 @@ source:
     - fix_setuptools_on_win_py37_py38.patch  # [win and (py==37 or py==38)]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [py<37]
   ignore_run_exports:
     - tk
