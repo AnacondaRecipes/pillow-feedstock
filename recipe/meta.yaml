@@ -58,7 +58,7 @@ requirements:
 test:
   imports:
     - PIL
-    - PIL.Image  # [not win]
+    - PIL.Image
     - PIL.ImageCms  # [not win]
   requires:
     - pip
