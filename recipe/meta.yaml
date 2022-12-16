@@ -10,6 +10,7 @@ source:
   sha256: c935a22a557a560108d780f9a0fc426dd7459940dc54faa49d83249c8d3e760f
   patches:
     - disable_detect.patch  # [unix]
+    - win_imaging_version_fix.patch  # [win]
   
 build:
   number: 0
