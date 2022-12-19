@@ -12,7 +12,7 @@ source:
     - disable_detect.patch  # [unix]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<37]
   ignore_run_exports:
     - tk
@@ -38,7 +38,7 @@ requirements:
     - setuptools <60  # [win and (py==37 or py==38)]
     - setuptools      # [not (win and (py==37 or py==38))]
     - wheel
-    # Required by default
+    # Required by default.
     - jpeg
     - zlib
     # Optional dependencies
