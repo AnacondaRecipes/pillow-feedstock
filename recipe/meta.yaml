@@ -38,7 +38,7 @@ requirements:
     - setuptools <60  # [win and (py==37 or py==38)]
     - setuptools      # [not (win and (py==37 or py==38))]
     - wheel
-    # Required by default.
+    # Required by default
     - jpeg
     - zlib
     # Optional dependencies
