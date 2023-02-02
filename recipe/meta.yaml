@@ -8,7 +8,7 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Pillow-{{ version }}.tar.gz
   sha256: c935a22a557a560108d780f9a0fc426dd7459940dc54faa49d83249c8d3e760f
-  patches:
+  patches:                  # [unix]
     - disable_detect.patch  # [unix]
 
 build:
@@ -19,7 +19,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - patch  # [unix]
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
