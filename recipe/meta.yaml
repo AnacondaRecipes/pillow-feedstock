@@ -23,7 +23,13 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    # 2022/7/14: The issue was observed with 'import PIL.Image' in v9.2.0:
+    # Additional double quotes for Core version: "9.2.0" on win-64 for python 3.7 and python 3.8.
+    # The last version of pillow we built (v9.0.1) was built using conda-build-3.21.7, 
+    # Looking at the conda-build changelog for v3.21.9, it was noticed some changes to support the new setuptools >=60.0
+    # 2023/2/23: It persists in 9.4.0. Check if the issue persists in the next releases 
+    - setuptools <60  # [win and (py==37 or py==38)]
+    - setuptools      # [not (win and (py==37 or py==38))]
     - wheel
     # Required by default
     - jpeg 9e
