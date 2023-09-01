@@ -1,3 +1,4 @@
-build_parameters:
-  - "--suppress-variables"
-  - "--error-overlinking"
+upload_channels:
+  - sk_test
+
+ upload_without_merge: True
