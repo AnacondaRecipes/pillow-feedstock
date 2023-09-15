@@ -12,5 +12,5 @@ set FREETYPE_ROOT=%LIBRARY_PREFIX%
 set WEBP_ROOT=%LIBRARY_PREFIX%
 
 
-%PYTHON% -m pip install . --no-deps --ignore-installed --no-cache-dir --global-option="build_ext" --global-option="--enable-webp" -vvv
+%PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir --global-option="build_ext" --global-option="--enable-webp" -vvv
 if errorlevel 1 exit 1
