@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "10.2.0" %}
+{% set version = "10.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e87f0b2c78157e12d7686b27d63c070fd65d994e8ddae6f328e0dcf4a0cd007e
-  patches:                  # [unix]
-    - disable_detect.patch  # [unix]
+  sha256: 9d2455fbf44c914840c793e89aa82d0e1763a14253a000743719ae5946814b2d
 
 build:
   number: 0
@@ -18,7 +16,6 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - patch     # [not win]
   host:
     - python
     - pip
@@ -30,10 +27,10 @@ requirements:
     # Optional dependencies
     # (also can be incuded libwebp, libimagequant, libraqm,
     # libxcb, openjpeg (it causes build errors on win32),
-    # see https://pillow.readthedocs.io/en/latest/installation.html#external-libraries)
+    # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
     # A subset of one file of tk is also vendored in.
     - freetype 2.10.4
-    - lcms2 2.12       # [not win]
+    - lcms2 2.12
     - libtiff 4.2.0
     - libwebp-base 1.3.2
     - openjpeg 2.3
@@ -51,6 +48,11 @@ test:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
+  # The upstream Tests/images contains a lot of image files that can be tested by pytest 
+  # but then the size of the package will increase significantly (+70Mb).
+  # Pillow tests against some images that it cannot keep in-repo
+  # due to anti-virus software triggering. For a slightly longer explanation, see:
+  # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
   requires:
     - pip
   commands:
