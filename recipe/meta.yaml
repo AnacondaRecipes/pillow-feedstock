@@ -8,8 +8,6 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 9d2455fbf44c914840c793e89aa82d0e1763a14253a000743719ae5946814b2d
-  patches:
-    - case_sensitve.patch
 
 build:
   number: 0
@@ -18,8 +16,6 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - patch     # [not win]
-    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -31,10 +27,10 @@ requirements:
     # Optional dependencies
     # (also can be incuded libwebp, libimagequant, libraqm,
     # libxcb, openjpeg (it causes build errors on win32),
-    # see https://pillow.readthedocs.io/en/latest/installation.html#external-libraries)
+    # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
     # A subset of one file of tk is also vendored in.
     - freetype 2.10.4
-    - lcms2 2.12       # [not win]
+    - lcms2 2.12
     - libtiff 4.2.0
     - libwebp-base 1.3.2
     - openjpeg 2.3
@@ -47,42 +43,20 @@ requirements:
     - openjpeg >=2.3.0,<3.0a0
     - zlib >=1.2.13,<1.3.0a0
 
-{% set tests_to_skip = "_not_a_real_test" %}
-# compile smoke test failing to link python3x.lib
-{% set tests_to_skip = tests_to_skip + " or test_embeddable" %}                     # [win]
-# the following needs a viewer which we don't have
-{% set tests_to_skip = tests_to_skip + " or (test_imageshow and test_show)" %}      # [linux]
-# this test is a known failure with libjpeg_turbo, but only marked as such for 2.0 upstream, not 2.x, see
-# https://github.com/python-pillow/Pillow/blob/9.3.0/Tests/test_file_libtiff.py#L885-L891
-{% set tests_to_skip = tests_to_skip + " or test_strip_ycbcr_jpeg_2x2_sampling" %}  # [not osx]
-# skip test that requires an image incorrectly flagged by AV
-{% set tests_to_skip = tests_to_skip + " or test_tiff_crashes[Tests/images/crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif]" %}
-
 test:
   imports:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
-  source_files:
-    # from upstream repo
-    - Tests/
-  files:
-    # from recipe; some images cannot be in upstream repo, see Tests/README
-    - Tests/images
+  # The upstream Tests/images contains a lot of image files that can be tested by pytest 
+  # but then the size of the package will increase significantly (+70Mb).
+  # Pillow tests against some images that it cannot keep in-repo
+  # due to anti-virus software triggering. For a slightly longer explanation, see:
+  # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
   requires:
     - pip
-    - pytest
-    - pytest-timeout
-    # test dependency, see Tests/test_image_access.py
-    - setuptools
-    - {{ compiler('c') }}
-    # for run_test.py
-    - fsspec
-    - aiohttp
-    - requests
   commands:
     - pip check
-    - pytest -k "not ({{ tests_to_skip }})" --durations=50
 
 about:
   home: https://pillow.readthedocs.io
