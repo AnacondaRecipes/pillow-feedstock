@@ -71,7 +71,11 @@ about:
   dev_url: https://github.com/python-pillow/Pillow
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/45999
+    reason: Client request
   recipe-maintainers:
+    - ianaobi
     - jakirkham
     - patricksnape
     - pelson
