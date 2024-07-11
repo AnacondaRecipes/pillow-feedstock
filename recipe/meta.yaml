@@ -59,6 +59,7 @@ test:
     - pip
   commands:
     - pip check
+    - python -c "from PIL.Image import core"
 
 about:
   home: https://pillow.readthedocs.io
