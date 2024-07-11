@@ -48,7 +48,7 @@ test:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
-    # Testing _imaging to prevent an error 'DLL load failed while importing _imaging'
+    # Testing _imaging to verify that it doesn't fail like reported in https://anaconda.atlassian.net/browse/PKG-5184
     - PIL._imaging
   # The upstream Tests/images contains a lot of image files that can be tested by pytest 
   # but then the size of the package will increase significantly (+70Mb).
