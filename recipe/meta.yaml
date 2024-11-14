@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "10.4.0" %}
+{% set version = "11.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 166c1cd4d24309b30d61f79f4a9114b7b2313d7450912277855ff5dfd7cd4a06
+  sha256: 72bacbaf24ac003fea9bff9837d1eedb6088758d41e100c1552930151f677739
 
 build:
   number: 0
-  skip: true # [py<38]
+  skip: true # [py<39]
 
 requirements:
   build:
@@ -22,18 +22,18 @@ requirements:
     - setuptools >=67.8
     - wheel
     # Required by default
-    - jpeg 9e
-    - zlib 1.2.13
+    - jpeg {{ jpeg }}
+    - zlib {{ zlib }}
     # Optional dependencies
     # (also can be incuded libwebp, libimagequant, libraqm,
     # libxcb, openjpeg (it causes build errors on win32),
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
     # A subset of one file of tk is also vendored in.
-    - freetype 2.10.4
+    - freetype {{ freetype }}
     - lcms2 2.12
-    - libtiff 4.2.0
+    - libtiff {{ libtiff }}
     - libwebp-base 1.3.2
-    - openjpeg 2.3
+    - openjpeg {{ openjpeg }}
   run:
     - python
     - freetype >=2.10.4,<3.0a0
@@ -50,7 +50,7 @@ test:
     - PIL.ImageCms  # [not win]
     # Testing _imaging to verify that it doesn't fail like reported in https://anaconda.atlassian.net/browse/PKG-5184
     - PIL._imaging
-  # The upstream Tests/images contains a lot of image files that can be tested by pytest 
+  # The upstream Tests/images contains a lot of image files that can be tested by pytest
   # but then the size of the package will increase significantly (+70Mb).
   # Pillow tests against some images that it cannot keep in-repo
   # due to anti-virus software triggering. For a slightly longer explanation, see:
