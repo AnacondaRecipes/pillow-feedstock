@@ -9,4 +9,4 @@ export FREETYPE_ROOT=$PREFIX
 export LCMS_ROOT=$PREFIX
 export WEBP_ROOT=$PREFIX
 
-$PYTHON -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir --global-option="build_ext" --global-option="--enable-webp" --global-option="--enable-jpeg2000" -vv
+$PYTHON -m pip install . --no-deps --no-build-isolation -vv
