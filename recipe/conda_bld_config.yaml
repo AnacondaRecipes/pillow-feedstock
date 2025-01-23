@@ -1,5 +1,0 @@
-MACOSX_SDK_VERSION:    # [osx]
-  - 13.3              # [osx]
-CONDA_BUILD_SYSROOT:  # [osx]
-  - /opt/MacOSX13.3.sdk        # [osx and x86_64]
-  - /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk  # [osx and arm64]
