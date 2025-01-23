@@ -12,7 +12,7 @@ source:
     - patches/osx_sdk_path.patch  # [osx]
 build:
   number: 0
-  skip: true # [py<39]
+  skip: true # [not (osx and arm64)]
 
 requirements:
   build:
