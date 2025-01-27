@@ -1,0 +1,30 @@
+diff --git a/setup.py b/setup.py
+index a85731db9..e51dacebb 100644
+--- a/setup.py
++++ b/setup.py
+@@ -449,24 +449,7 @@ class pil_build_ext(build_ext):
+                 break
+ 
+     def get_macos_sdk_path(self) -> str | None:
+-        try:
+-            sdk_path = (
+-                subprocess.check_output(["xcrun", "--show-sdk-path", "--sdk", "macosx"])
+-                .strip()
+-                .decode("latin1")
+-            )
+-        except Exception:
+-            sdk_path = None
+-        if (
+-            not sdk_path
+-            or sdk_path == "/Applications/Xcode.app/Contents/Developer"
+-            "/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+-        ):
+-            commandlinetools_sdk_path = (
+-                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+-            )
+-            if os.path.exists(commandlinetools_sdk_path):
+-                sdk_path = commandlinetools_sdk_path
++        sdk_path = os.environ.get("CONDA_BUILD_SYSROOT", "")
+         return sdk_path
+ 
+     def build_extensions(self) -> None:
