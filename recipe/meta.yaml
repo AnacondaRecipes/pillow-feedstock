@@ -11,7 +11,7 @@ source:
   patches:   # [osx]
     - patches/osx_sdk_path.patch  # [osx]
 build:
-  number: 0
+  number: 1
   skip: true # [py<39]
 
 requirements:
@@ -33,7 +33,7 @@ requirements:
     # A subset of one file of tk is also vendored in.
     - freetype {{ freetype }}
     - lcms2 2.16
-    - libtiff {{ libtiff }}
+    - libtiff 4.7.0
     - libwebp-base 1.3.2
     - openjpeg {{ openjpeg }}
   run:
