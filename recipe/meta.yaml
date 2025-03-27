@@ -12,7 +12,7 @@ source:
     - patches/osx_sdk_path.patch  # [osx]
 build:
   number: 1
-  skip: true # [py<39]
+  skip: true # [py<39 or s390x]
 
 requirements:
   build:
