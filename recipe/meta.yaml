@@ -35,7 +35,7 @@ requirements:
     - lcms2 2.16
     - libtiff 4.7.0
     - libwebp-base 1.3.2
-    - openjpeg {{ openjpeg }}
+    - openjpeg 2.5.2
   run:
     - python
     - freetype >=2.10.4,<3.0a0
