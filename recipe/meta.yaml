@@ -40,6 +40,7 @@ requirements:
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
     - openjpeg {{ openjpeg }}
+    - libxcb {{ libxcb }}  # [linux]
   run:
     - python
     - freetype
@@ -50,6 +51,7 @@ requirements:
     - zlib
     - harfbuzz
     - fribidi
+    - libxcb  # [linux]
 
 test:
   imports:
