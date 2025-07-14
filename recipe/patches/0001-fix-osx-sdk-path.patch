@@ -1,0 +1,60 @@
+From fa102ddd4774d49b3634605434c8b967ce660877 Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Thu, 10 Jul 2025 03:30:38 -0700
+Subject: [PATCH] fix osx sdk path
+
+---
+ setup.py | 37 +++++++++++++++++++------------------
+ 1 file changed, 19 insertions(+), 18 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 477d187..45888bc 100644
+--- a/setup.py
++++ b/setup.py
+@@ -453,24 +453,25 @@ class pil_build_ext(build_ext):
+                 break
+ 
+     def get_macos_sdk_path(self) -> str | None:
+-        try:
+-            sdk_path = (
+-                subprocess.check_output(["xcrun", "--show-sdk-path", "--sdk", "macosx"])
+-                .strip()
+-                .decode("latin1")
+-            )
+-        except Exception:
+-            sdk_path = None
+-        if (
+-            not sdk_path
+-            or sdk_path == "/Applications/Xcode.app/Contents/Developer"
+-            "/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+-        ):
+-            commandlinetools_sdk_path = (
+-                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+-            )
+-            if os.path.exists(commandlinetools_sdk_path):
+-                sdk_path = commandlinetools_sdk_path
++        #try:
++        #    sdk_path = (
++        #        subprocess.check_output(["xcrun", "--show-sdk-path", "--sdk", "macosx"])
++        #        .strip()
++        #        .decode("latin1")
++        #    )
++        #except Exception:
++        #    sdk_path = None
++        #if (
++        #    not sdk_path
++        #    or sdk_path == "/Applications/Xcode.app/Contents/Developer"
++        #    "/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
++        #):
++        #    commandlinetools_sdk_path = (
++        #        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
++        #    )
++        #    if os.path.exists(commandlinetools_sdk_path):
++        #        sdk_path = commandlinetools_sdk_path
++        sdk_path = os.environ.get("CONDA_BUILD_SYSROOT", "")
+         return sdk_path
+ 
+     def get_ios_sdk_path(self) -> str:
+-- 
+2.39.3 (Apple Git-146)
+
