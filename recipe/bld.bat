@@ -12,5 +12,14 @@ set FREETYPE_ROOT=%LIBRARY_PREFIX%
 set LCMS_ROOT=%LIBRARY_PREFIX%
 set WEBP_ROOT=%LIBRARY_PREFIX%
 
-%PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir --global-option="build_ext" --global-option="--enable-lcms" --global-option="--enable-webp" --global-option="--enable-jpeg2000" --global-option="--enable-zlib" --global-option="--enable-jpeg" --global-option="--enable-tiff" --global-option="--enable-freetype --global-option="--enable-webpmux" -vv
+%PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir ^
+--global-option="build_ext" ^
+--global-option="--enable-lcms" ^
+--global-option="--enable-webp" ^
+--global-option="--enable-jpeg2000" ^
+--global-option="--enable-zlib" ^
+--global-option="--enable-jpeg" ^
+--global-option="--enable-tiff" ^
+--global-option="--enable-freetype" ^
+--global-option="--enable-webpmux" -vv
 if errorlevel 1 exit 1
