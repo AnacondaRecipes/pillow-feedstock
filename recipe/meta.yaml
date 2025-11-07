@@ -10,7 +10,7 @@ source:
   sha256: 87d4f8125c9988bfbed67af47dd7a953e2fc7b0cc1e7800ec6d2080d490bb353
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<310]
 
 requirements:
@@ -38,7 +38,7 @@ requirements:
     - lcms2 {{ lcms2 }}
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
-    - openjpeg {{ openjpeg }}
+    - libopenjpeg {{ openjpeg }}
     - libxcb {{ libxcb }}  # [linux]
   run:
     - python
@@ -46,7 +46,7 @@ requirements:
     - jpeg
     - libtiff
     - libwebp-base
-    - openjpeg
+    - libopenjpeg
     - zlib
     - harfbuzz
     - fribidi
