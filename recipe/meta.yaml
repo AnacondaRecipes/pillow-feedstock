@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "12.0.0" %}
+{% set version = "12.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pillow-{{ version }}.tar.gz
-  sha256: 87d4f8125c9988bfbed67af47dd7a953e2fc7b0cc1e7800ec6d2080d490bb353
+  sha256: 5c5ae0a06e9ea030ab786b0251b32c7e4ce10e58d983c0d5c56029455180b5b9
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<310]
 
 requirements:
@@ -22,7 +22,6 @@ requirements:
     - python
     - pybind11
     - setuptools >=77
-    - wheel
     # Required by default
     - jpeg {{ jpeg }}
     - zlib {{ zlib }}
