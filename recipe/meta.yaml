@@ -1,16 +1,16 @@
 {% set name = "pillow" %}
-{% set version = "12.0.0" %}
+{% set version = "12.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pillow-{{ version }}.tar.gz
-  sha256: 87d4f8125c9988bfbed67af47dd7a953e2fc7b0cc1e7800ec6d2080d490bb353
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 5c5ae0a06e9ea030ab786b0251b32c7e4ce10e58d983c0d5c56029455180b5b9
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<310]
 
 requirements:
@@ -22,15 +22,16 @@ requirements:
     - python
     - pybind11
     - setuptools >=77
-    - wheel
     # Required by default
     - jpeg {{ jpeg }}
     - zlib {{ zlib }}
     # Optional dependencies
-    # (also can be incuded libopenjp2, raqm, libimagequant
-    # libxcb, openjpeg (it causes build errors on win32),
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
-    # A subset of one file of tk is also vendored in.
+    # libimagequant and libxcb are not supported on WIN
+    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L70-L73
+    # libimagequant is not supported on Linux and OSX
+    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L31-L51
+    # libraqm is not available on the channel.
     - libavif {{ libavif }}
     - freetype {{ freetype }}
     - harfbuzz {{ harfbuzz }}
@@ -39,7 +40,7 @@ requirements:
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
     - libopenjpeg {{ openjpeg }}
-    - libxcb {{ libxcb }}  # [linux]
+    - libxcb {{ libxcb }}  # [unix]
   run:
     - python
     - freetype
@@ -53,22 +54,26 @@ requirements:
     - libxcb  # [linux]
 
 test:
+  source_files:
+    - selftest.py
+    - Tests/images
   imports:
     - PIL
     - PIL.Image
     - PIL.ImageCms  # [not win]
     # Testing _imaging to verify that it doesn't fail like reported in https://anaconda.atlassian.net/browse/PKG-5184
     - PIL._imaging
-  # The upstream Tests/images contains a lot of image files that can be tested by pytest
-  # but then the size of the package will increase significantly (+70Mb).
-  # Pillow tests against some images that it cannot keep in-repo
-  # due to anti-virus software triggering. For a slightly longer explanation, see:
-  # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
   requires:
     - pip
   commands:
     - pip check
     - python -c "from PIL.Image import core"
+    - python selftest.py
+    # The upstream Tests/images contains a lot of image files that can be tested by pytest
+    # but then the size of the package will increase significantly (+70Mb).
+    # Pillow tests against some images that it cannot keep in-repo
+    # due to anti-virus software triggering. For a slightly longer explanation, see:
+    # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
 
 about:
   home: https://pillow.readthedocs.io
