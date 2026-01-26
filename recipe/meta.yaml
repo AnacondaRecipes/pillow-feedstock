@@ -27,7 +27,7 @@ requirements:
     - zlib {{ zlib }}
     # Optional dependencies
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
-    # libimagequant and libxcb is not supported on WIN
+    # libimagequant and libxcb are not supported on WIN
     # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L70-L73
     # libimagequant is not supported on Linux and OSX
     # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L31-L51
