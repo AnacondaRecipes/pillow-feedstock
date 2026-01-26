@@ -26,10 +26,12 @@ requirements:
     - jpeg {{ jpeg }}
     - zlib {{ zlib }}
     # Optional dependencies
-    # (also can be incuded libopenjp2, raqm, libimagequant
-    # libxcb, openjpeg (it causes build errors on win32),
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
-    # A subset of one file of tk is also vendored in.
+    # libimagequant and libxcb is not supported on WIN
+    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L70-L73
+    # libimagequant is not supported on Linux and OSX
+    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L31-L51
+    # libraqm is not available on the channel.
     - libavif {{ libavif }}
     - freetype {{ freetype }}
     - harfbuzz {{ harfbuzz }}
@@ -39,7 +41,6 @@ requirements:
     - libwebp-base {{ libwebp }}
     - libopenjpeg {{ openjpeg }}
     - libxcb {{ libxcb }}  # [unix]
-    - libxcb-cos6-x86_64 {{ libxcb }} # [win]
   run:
     - python
     - freetype
