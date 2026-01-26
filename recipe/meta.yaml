@@ -38,7 +38,8 @@ requirements:
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
     - libopenjpeg {{ openjpeg }}
-    - libxcb {{ libxcb }}  # [linux]
+    - libxcb {{ libxcb }}  # [unix]
+    - libxcb-cos6-x86_64 {{ libxcb }} # [win]
   run:
     - python
     - freetype
