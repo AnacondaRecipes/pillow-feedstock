@@ -13,13 +13,13 @@ set LCMS_ROOT=%LIBRARY_PREFIX%
 set WEBP_ROOT=%LIBRARY_PREFIX%
 
 %PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir ^
---global-option="build_ext" ^
---global-option="--enable-lcms" ^
---global-option="--enable-webp" ^
---global-option="--enable-jpeg2000" ^
---global-option="--enable-zlib" ^
---global-option="--enable-jpeg" ^
---global-option="--enable-tiff" ^
---global-option="--enable-freetype" ^
---global-option="--enable-webpmux" -vv
+--config-settings="--global-option=build_ext" ^
+--config-settings="--global-option=--enable-lcms" ^
+--config-settings="--global-option=--enable-webp" ^
+--config-settings="--global-option=--enable-jpeg2000" ^
+--config-settings="--global-option=--enable-zlib" ^
+--config-settings="--global-option=--enable-jpeg" ^
+--config-settings="--global-option=--enable-tiff" ^
+--config-settings="--global-option=--enable-freetype" ^
+--config-settings="--global-option=--enable-webpmux" -vv
 if errorlevel 1 exit 1

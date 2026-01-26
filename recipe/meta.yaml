@@ -18,7 +18,7 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - pip <23
+    - pip
     - python
     - pybind11
     - setuptools >=77
