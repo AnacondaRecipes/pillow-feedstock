@@ -11,13 +11,13 @@ export FREETYPE_ROOT=$PREFIX
 export LCMS_ROOT=$PREFIX
 export WEBP_ROOT=$PREFIX
 
-$PYTHON -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-cache-dir \
---config-settings="--global-option=build_ext" \
---config-settings="--global-option=--enable-lcms" \
---config-settings="--global-option=--enable-webp" \
---config-settings="--global-option=--enable-jpeg2000" \
---config-settings="--global-option=--enable-zlib" \
---config-settings="--global-option=--enable-jpeg" \
---config-settings="--global-option=--enable-tiff" \
---config-settings="--global-option=--enable-freetype" \
---config-settings="--global-option=--enable-webpmux"
+export PILLOW_ENABLE_LCMS=1
+export PILLOW_ENABLE_WEBP=1
+export PILLOW_ENABLE_JPEG2000=1
+export PILLOW_ENABLE_ZLIB=1
+export PILLOW_ENABLE_JPEG=1
+export PILLOW_ENABLE_TIFF=1
+export PILLOW_ENABLE_FREETYPE=1
+export PILLOW_ENABLE_WEBPMUX=1
+
+$PYTHON -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-cache-dir
