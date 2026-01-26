@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pillow-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 5c5ae0a06e9ea030ab786b0251b32c7e4ce10e58d983c0d5c56029455180b5b9
 
 build:
@@ -18,7 +18,7 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - pip
+    - pip <23
     - python
     - pybind11
     - setuptools >=77
