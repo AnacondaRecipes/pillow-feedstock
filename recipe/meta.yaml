@@ -52,6 +52,8 @@ requirements:
     - libxcb  # [linux]
 
 test:
+  source_files:
+    - selftest.py
   imports:
     - PIL
     - PIL.Image
@@ -63,6 +65,7 @@ test:
   commands:
     - pip check
     - python -c "from PIL.Image import core"
+    - python selftest.py
     # The upstream Tests/images contains a lot of image files that can be tested by pytest
     # but then the size of the package will increase significantly (+70Mb).
     # Pillow tests against some images that it cannot keep in-repo
