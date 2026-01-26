@@ -54,6 +54,7 @@ requirements:
 test:
   source_files:
     - selftest.py
+    - Tests/images
   imports:
     - PIL
     - PIL.Image
