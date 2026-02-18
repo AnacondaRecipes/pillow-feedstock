@@ -12,14 +12,14 @@ set FREETYPE_ROOT=%LIBRARY_PREFIX%
 set LCMS_ROOT=%LIBRARY_PREFIX%
 set WEBP_ROOT=%LIBRARY_PREFIX%
 
-%PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir ^
---global-option="build_ext" ^
---global-option="--enable-lcms" ^
---global-option="--enable-webp" ^
---global-option="--enable-jpeg2000" ^
---global-option="--enable-zlib" ^
---global-option="--enable-jpeg" ^
---global-option="--enable-tiff" ^
---global-option="--enable-freetype" ^
---global-option="--enable-webpmux" -vv
+%PYTHON% -m pip install . ^
+  --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv ^
+  -C jpeg=enable ^
+  -C zlib=enable ^
+  -C tiff=enable ^
+  -C freetype=enable ^
+  -C raqm=disable ^
+  -C lcms=enable ^
+  -C webp=enable ^
+  -C jpeg2000=enable
 if errorlevel 1 exit 1
