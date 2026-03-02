@@ -11,6 +11,7 @@ set HARFBUZZ_ROOT=%LIBRARY_PREFIX%
 set FREETYPE_ROOT=%LIBRARY_PREFIX%
 set LCMS_ROOT=%LIBRARY_PREFIX%
 set WEBP_ROOT=%LIBRARY_PREFIX%
+set XCB_ROOT=%LIBRARY_PREFIX%
 
 %PYTHON% -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir
 if errorlevel 1 exit 1
