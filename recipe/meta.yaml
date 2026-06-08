@@ -23,7 +23,7 @@ requirements:
     - pybind11
     - setuptools >=77
     # Required by default
-    - jpeg {{ jpeg }}
+    - libjpeg-turbo {{ libjpeg_turbo }}
     - zlib {{ zlib }}
     # Optional dependencies
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
@@ -44,7 +44,7 @@ requirements:
   run:
     - python
     - freetype
-    - jpeg
+    - libjpeg-turbo
     - libtiff
     - libwebp-base
     - libopenjpeg
