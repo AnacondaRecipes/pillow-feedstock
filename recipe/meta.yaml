@@ -20,7 +20,7 @@ requirements:
   host:
     - pip
     - python
-    - pybind11
+    - pybind11 # analint: pybind11_use_pybind11_abi
     - setuptools >=77
     # Required by default
     - libjpeg-turbo {{ libjpeg_turbo }}
