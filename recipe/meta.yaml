@@ -50,7 +50,7 @@ requirements:
     - libtiff
     - libwebp-base
     - libopenjpeg
-    - libzlib
+    - libzlib # analint: cbc_dep_in_run_missing_from_host
     - libxcb  # [linux]
 
 test:
