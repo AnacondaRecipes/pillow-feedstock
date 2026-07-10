@@ -10,7 +10,7 @@ source:
   sha256: 3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<310]
 
 requirements:
@@ -32,10 +32,12 @@ requirements:
     # libimagequant is not supported on Linux and OSX
     # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L31-L51
     # libraqm is not available on the channel.
+    # fribidi and harfbuzz are only needed when building with libraqm
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/building-from-source.rst?plain=1#L72-L88
+    #- harfbuzz {{ harfbuzz }}
+    #- fribidi {{ fribidi }}
     - libavif {{ libavif }}
     - freetype {{ freetype }}
-    - harfbuzz {{ harfbuzz }}
-    - fribidi {{ fribidi }}
     - lcms2 {{ lcms2 }}
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
@@ -48,9 +50,7 @@ requirements:
     - libtiff
     - libwebp-base
     - libopenjpeg
-    - zlib
-    - harfbuzz
-    - fribidi
+    - libzlib
     - libxcb  # [linux]
 
 test:
