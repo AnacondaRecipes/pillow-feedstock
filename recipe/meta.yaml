@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "12.2.0" %}
+{% set version = "12.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a830b1a40919539d07806aa58e1b114df53ddd43213d9c8b75847eee6c0182b5
+  sha256: 3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce
 
 build:
   number: 1
@@ -28,9 +28,9 @@ requirements:
     # Optional dependencies
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
     # libimagequant and libxcb are not supported on WIN
-    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L70-L73
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L70-L73
     # libimagequant is not supported on Linux and OSX
-    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L31-L51
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L31-L51
     # libraqm is not available on the channel.
     - libavif {{ libavif }}
     - freetype {{ freetype }}
