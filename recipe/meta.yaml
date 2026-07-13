@@ -1,5 +1,5 @@
 {% set name = "pillow" %}
-{% set version = "12.2.0" %}
+{% set version = "12.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a830b1a40919539d07806aa58e1b114df53ddd43213d9c8b75847eee6c0182b5
+  sha256: 3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<310]
 
 requirements:
@@ -20,7 +20,7 @@ requirements:
   host:
     - pip
     - python
-    - pybind11
+    - pybind11 # analint: pybind11_use_pybind11_abi
     - setuptools >=77
     # Required by default
     - libjpeg-turbo {{ libjpeg_turbo }}
@@ -28,14 +28,16 @@ requirements:
     # Optional dependencies
     # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
     # libimagequant and libxcb are not supported on WIN
-    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L70-L73
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L70-L73
     # libimagequant is not supported on Linux and OSX
-    # https://github.com/python-pillow/Pillow/blob/12.1.0/docs/installation/basic-installation.rst?plain=1#L31-L51
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L31-L51
     # libraqm is not available on the channel.
+    # fribidi and harfbuzz are only needed when building with libraqm
+    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/building-from-source.rst?plain=1#L72-L88
+    #- harfbuzz {{ harfbuzz }}
+    #- fribidi {{ fribidi }}
     - libavif {{ libavif }}
     - freetype {{ freetype }}
-    - harfbuzz {{ harfbuzz }}
-    - fribidi {{ fribidi }}
     - lcms2 {{ lcms2 }}
     - libtiff {{ libtiff }}
     - libwebp-base {{ libwebp }}
@@ -48,15 +50,15 @@ requirements:
     - libtiff
     - libwebp-base
     - libopenjpeg
-    - zlib
-    - harfbuzz
-    - fribidi
+    - libzlib # analint: cbc_dep_in_run_missing_from_host
     - libxcb  # [linux]
 
 test:
   source_files:
     - selftest.py
-    - Tests/images
+    - Tests/images/hopper.gif
+    - Tests/images/hopper.ppm
+    - Tests/images/hopper.jpg
   imports:
     - PIL
     - PIL.Image
@@ -68,15 +70,11 @@ test:
   commands:
     - pip check
     - python -c "from PIL.Image import core"
+    # running minimal sanity test, to avoid bloating the package size
     - python selftest.py
-    # The upstream Tests/images contains a lot of image files that can be tested by pytest
-    # but then the size of the package will increase significantly (+70Mb).
-    # Pillow tests against some images that it cannot keep in-repo
-    # due to anti-virus software triggering. For a slightly longer explanation, see:
-    # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
 
 about:
-  home: https://pillow.readthedocs.io
+  home: https://python-pillow.github.io
   license: HPND AND TCL
   license_family: Other
   license_file: LICENSE
