@@ -56,7 +56,9 @@ requirements:
 test:
   source_files:
     - selftest.py
-    - Tests/images
+    - Tests/images/hopper.gif
+    - Tests/images/hopper.ppm
+    - Tests/images/hopper.jpg
   imports:
     - PIL
     - PIL.Image
@@ -68,12 +70,8 @@ test:
   commands:
     - pip check
     - python -c "from PIL.Image import core"
+    # running minimal sanity test, to avoid bloating the package size
     - python selftest.py
-    # The upstream Tests/images contains a lot of image files that can be tested by pytest
-    # but then the size of the package will increase significantly (+70Mb).
-    # Pillow tests against some images that it cannot keep in-repo
-    # due to anti-virus software triggering. For a slightly longer explanation, see:
-    # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
 
 about:
   home: https://python-pillow.github.io
