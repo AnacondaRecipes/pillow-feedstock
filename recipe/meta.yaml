@@ -76,7 +76,7 @@ test:
     # https://github.com/conda-forge/pillow-feedstock/pull/104#issuecomment-1005245444
 
 about:
-  home: https://pillow.readthedocs.io
+  home: https://python-pillow.github.io
   license: HPND AND TCL
   license_family: Other
   license_file: LICENSE
