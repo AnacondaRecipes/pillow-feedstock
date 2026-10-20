@@ -12,7 +12,7 @@ source:
     - patches/0001-fix-osx-sdk-path.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<39]
 
 requirements:
