@@ -12,7 +12,7 @@ source:
     - patches/0001-fix-osx-sdk-path.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<39]
 
 requirements:
@@ -25,7 +25,7 @@ requirements:
     - wheel
     - setuptools >=77
     # Required by default
-    - jpeg {{ jpeg }}
+    - libjpeg-turbo {{ libjpeg_turbo }}
     - zlib {{ zlib }}
     # Optional dependencies
     # (also can be incuded libopenjp2, raqm, libimagequant
@@ -44,7 +44,7 @@ requirements:
   run:
     - python
     - freetype
-    - jpeg
+    - libjpeg-turbo
     - libtiff
     - libwebp-base
     - openjpeg
