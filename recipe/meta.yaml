@@ -73,9 +73,9 @@ about:
   license_family: Other
   license_file:
     - LICENSE
-    - src/Tk/_tkmini.h
-    - src/libImaging/Arrow.h
-    - src/thirdparty/pythoncapi_compat.h
+    #- src/Tk/_tkmini.h
+    #- src/libImaging/Arrow.h
+    #- src/thirdparty/pythoncapi_compat.h
   summary: Pillow is the friendly PIL fork by Alex Clark and Contributors
   description: |
     Pillow is the friendly PIL fork. PIL is the Python Imaging Library,
