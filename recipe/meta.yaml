@@ -1,17 +1,24 @@
 {% set name = "pillow" %}
-{% set version = "12.3.0" %}
+{% set version = "13.0.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: cdcd1ba258178f7356d74170c9a81ba4eab6a5d55748bc402a5a2a6fe6be3510
+  # License texts for the bundled Arrow and pythoncapi-compat headers.
+  - url: https://www.apache.org/licenses/LICENSE-2.0.txt
+    sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+    fn: LICENSE-APACHE-2.0.txt
+  - url: https://raw.githubusercontent.com/python/pythoncapi-compat/b4cf22061a629428ceb19927f903732b8c20ef87/COPYING
+    sha256: 3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98
+    fn: LICENSE-pythoncapi-compat.txt
 
 build:
   number: 0
-  skip: true  # [py<310]
+  skip: true  # [py<311]
 
 requirements:
   build:
@@ -20,22 +27,14 @@ requirements:
   host:
     - pip
     - python
-    - pybind11 # analint: pybind11_use_pybind11_abi
+    - pybind11 3.1.0  # analint: pybind11_use_pybind11_abi  # setup.py uses ParallelCompile, not the C++ ABI
     - setuptools >=77
     # Required by default
     - libjpeg-turbo {{ libjpeg_turbo }}
     - zlib {{ zlib }}
     # Optional dependencies
-    # see https://pillow.readthedocs.io/en/latest/installation/building-from-source.html#external-libraries)
-    # libimagequant and libxcb are not supported on WIN
-    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L70-L73
-    # libimagequant is not supported on Linux and OSX
-    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/basic-installation.rst?plain=1#L31-L51
-    # libraqm is not available on the channel.
-    # fribidi and harfbuzz are only needed when building with libraqm
-    # https://github.com/python-pillow/Pillow/blob/12.3.0/docs/installation/building-from-source.rst?plain=1#L72-L88
-    #- harfbuzz {{ harfbuzz }}
-    #- fribidi {{ fribidi }}
+    # https://github.com/python-pillow/Pillow/blob/13.0.0/docs/installation/building-from-source.rst
+    # Omit GPLv3 libimagequant; libraqm is unavailable on main, so omit its harfbuzz/fribidi deps.
     - libavif {{ libavif }}
     - freetype {{ freetype }}
     - lcms2 {{ lcms2 }}
@@ -50,8 +49,9 @@ requirements:
     - libtiff
     - libwebp-base
     - libopenjpeg
-    - libzlib # analint: cbc_dep_in_run_missing_from_host
+    - libzlib  # analint: cbc_dep_in_run_missing_from_host  # host zlib exports libzlib
     - libxcb  # [linux]
+  # Optional olefile/defusedxml extras have no version bounds; bare constraints are no-ops.
 
 test:
   source_files:
@@ -70,14 +70,21 @@ test:
   commands:
     - pip check
     - python -c "from PIL.Image import core"
+    - python -m PIL
     # running minimal sanity test, to avoid bloating the package size
     - python selftest.py
 
 about:
-  home: https://python-pillow.github.io
-  license: HPND AND TCL
+  home: https://python-pillow.org
+  license: MIT-CMU AND TCL AND Apache-2.0 AND 0BSD
   license_family: Other
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - src/Tk/_tkmini.h
+    - src/libImaging/Arrow.h
+    - LICENSE-APACHE-2.0.txt
+    - src/thirdparty/pythoncapi_compat.h
+    - LICENSE-pythoncapi-compat.txt
   summary: Pillow is the friendly PIL fork by Alex Clark and Contributors
   description: |
     Pillow is the friendly PIL fork. PIL is the Python Imaging Library,
