@@ -6,15 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: cdcd1ba258178f7356d74170c9a81ba4eab6a5d55748bc402a5a2a6fe6be3510
-  # License texts for the bundled Arrow and pythoncapi-compat headers.
-  - url: https://www.apache.org/licenses/LICENSE-2.0.txt
-    sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
-    fn: LICENSE-APACHE-2.0.txt
-  - url: https://raw.githubusercontent.com/python/pythoncapi-compat/b4cf22061a629428ceb19927f903732b8c20ef87/COPYING
-    sha256: 3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98
-    fn: LICENSE-pythoncapi-compat.txt
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: cdcd1ba258178f7356d74170c9a81ba4eab6a5d55748bc402a5a2a6fe6be3510
 
 build:
   number: 0
@@ -82,9 +75,7 @@ about:
     - LICENSE
     - src/Tk/_tkmini.h
     - src/libImaging/Arrow.h
-    - LICENSE-APACHE-2.0.txt
     - src/thirdparty/pythoncapi_compat.h
-    - LICENSE-pythoncapi-compat.txt
   summary: Pillow is the friendly PIL fork by Alex Clark and Contributors
   description: |
     Pillow is the friendly PIL fork. PIL is the Python Imaging Library,
